@@ -12,6 +12,8 @@
 *.so
 *.dylib
 
+pokedexcli
+
 # Test binary, built with `go test -c`
 *.test
 
