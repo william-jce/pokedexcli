@@ -12,7 +12,9 @@
 *.so
 *.dylib
 
+# Specific binary and logs
 pokedexcli
+*.log
 
 # Test binary, built with `go test -c`
 *.test
