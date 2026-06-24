@@ -9,3 +9,9 @@ func cleanInput(text string) []string {
 	result := strings.Fields(words)
 	return result
 }
+
+type cliCommand struct {
+	name        string
+	description string
+	callback    func() error
+}
