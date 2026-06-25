@@ -21,19 +21,25 @@ func main() {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
+		"map": {
+			name:        "map",
+			description: "Display the next 20 locations",
+			callback:    commandMap,
+		},
 	}
 
 	for {
 		fmt.Print("Pokedex > ")
 		scanner.Scan()
 		cleanedInput := cleanInput(scanner.Text())
+		c := Config{}
 
 		if len(cleanedInput) == 0 {
 			continue
 		}
 		command, exists := cliCommands[cleanedInput[0]]
 		if exists {
-			err := command.callback()
+			err := command.callback(&c)
 			if err != nil {
 				fmt.Println(err)
 			}
