@@ -26,13 +26,18 @@ func main() {
 			description: "Display the next 20 locations",
 			callback:    commandMap,
 		},
+		"mapb": {
+			name:        "mapb",
+			description: "Display the previous 20 locations",
+			callback:    commandMapb,
+		},
 	}
+	c := Config{}
 
 	for {
 		fmt.Print("Pokedex > ")
 		scanner.Scan()
 		cleanedInput := cleanInput(scanner.Text())
-		c := Config{}
 
 		if len(cleanedInput) == 0 {
 			continue

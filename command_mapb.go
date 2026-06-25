@@ -4,8 +4,12 @@ import (
 	"fmt"
 )
 
-func commandMap(c *Config) error {
-	locations, err := c.PokeapiClient.GetLocationArea(c.Next)
+func commandMapb(c *Config) error {
+	if c.Previous == nil {
+		fmt.Println("You're on the first page")
+		return nil
+	}
+	locations, err := c.PokeapiClient.GetLocationArea(c.Previous)
 	if err != nil {
 		return err
 	}
