@@ -1,7 +1,7 @@
 package main
 
 import (
-	pokeapi "github.com/william-jce/pokedexcli/internal/pokeapi"
+	pokeapi "github.com/william-jce/pokedex/internal/pokeapi"
 )
 
 type Config struct {

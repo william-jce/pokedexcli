@@ -1,3 +1,3 @@
-module github.com/william-jce/pokedexcli
+module github.com/william-jce/pokedex
 
 go 1.26.2

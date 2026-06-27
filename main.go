@@ -4,6 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"time"
+
+	pokeapi "github.com/william-jce/pokedex/internal/pokeapi"
+	pokecache "github.com/william-jce/pokedex/internal/pokecache"
 )
 
 var cliCommands map[string]cliCommand
@@ -32,7 +36,10 @@ func main() {
 			callback:    commandMapb,
 		},
 	}
-	c := Config{}
+	interval := 5 * time.Second
+	cache := pokecache.NewCache(interval)
+	client := pokeapi.Client{Cache: cache}
+	c := Config{PokeapiClient: client}
 
 	for {
 		fmt.Print("Pokedex > ")
