@@ -35,6 +35,11 @@ func main() {
 			description: "Display the previous 20 locations",
 			callback:    commandMapb,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Lists all the Pokemon in the specified location area",
+			callback:    commandExplore,
+		},
 	}
 	interval := 5 * time.Second
 	cache := pokecache.NewCache(interval)
@@ -51,7 +56,11 @@ func main() {
 		}
 		command, exists := cliCommands[cleanedInput[0]]
 		if exists {
-			err := command.callback(&c)
+			var arg string
+			if len(cleanedInput) > 1 {
+				arg = cleanedInput[1]
+			}
+			err := command.callback(&c, arg)
 			if err != nil {
 				fmt.Println(err)
 			}
