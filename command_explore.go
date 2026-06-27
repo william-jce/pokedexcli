@@ -1,13 +1,15 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
-func commandExplore(c *Config, locationAreaName string) error {
-	if locationAreaName == "" {
-		return fmt.Errorf("Location not provided. Please enter location name.")
+func commandExplore(c *config, args ...string) error {
+	if len(args) != 1 {
+		return errors.New("Location not provided. Please enter location name.")
 	}
+	locationAreaName := args[0]
 	location, err := c.PokeapiClient.GetAreaPokemon(locationAreaName)
 	if err != nil {
 		return err

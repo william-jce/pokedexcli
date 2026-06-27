@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func commandHelp(c *Config, locationAreaName string) error {
+func commandHelp(c *config, args ...string) error {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
 	for key, command := range cliCommands {

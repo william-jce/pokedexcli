@@ -40,11 +40,16 @@ func main() {
 			description: "Lists all the Pokemon in the specified location area",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Attempt to catch the specified Pokemon",
+			callback:    commandCatch,
+		},
 	}
 	interval := 5 * time.Second
 	cache := pokecache.NewCache(interval)
 	client := pokeapi.Client{Cache: cache}
-	c := Config{PokeapiClient: client}
+	c := config{PokeapiClient: client, Pokedex: make(map[string]pokeapi.PokemonRes)}
 
 	for {
 		fmt.Print("Pokedex > ")
