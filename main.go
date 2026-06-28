@@ -36,14 +36,24 @@ func main() {
 			callback:    commandMapb,
 		},
 		"explore": {
-			name:        "explore",
+			name:        "explore <location-area-name>",
 			description: "Lists all the Pokemon in the specified location area",
 			callback:    commandExplore,
 		},
 		"catch": {
-			name:        "catch",
+			name:        "catch <pokemon>",
 			description: "Attempt to catch the specified Pokemon",
 			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect <pokemon>",
+			description: "Prints information about the requested Pokemon",
+			callback:    commandInspect,
+		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "Lists all the Pokemon the user has caught",
+			callback:    commandPokedex,
 		},
 	}
 	interval := 5 * time.Second
@@ -61,11 +71,7 @@ func main() {
 		}
 		command, exists := cliCommands[cleanedInput[0]]
 		if exists {
-			var arg string
-			if len(cleanedInput) > 1 {
-				arg = cleanedInput[1]
-			}
-			err := command.callback(&c, arg)
+			err := command.callback(&c, cleanedInput[1:]...)
 			if err != nil {
 				fmt.Println(err)
 			}
